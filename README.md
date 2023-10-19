@@ -1,8 +1,10 @@
 # WORKSHOP INSTRUCUTIONS
 
-The main goal is to guide through a servioce mesh enforcing a zero trust network with authentication policies.
+The main goal is to guide through a service mesh enforcing a zero trust network with authentication policies.
 
-The tutorial was meant to be deployed on a Docker Desktop k8s enviroment. Feel free to open issues if you need help in other platforms
+The tutorial was meant to be deployed on a Docker Desktop k8s enviroment. Feel free to open issues if you need help in other platforms or to improve it.
+
+![Banner](./doc/img/banner.png)
 
 ## Table of contents
 
@@ -23,9 +25,9 @@ The tutorial was meant to be deployed on a Docker Desktop k8s enviroment. Feel f
 
 ## Before you start
 
-You must have access to a `kubernetes` cluster and `kubectl`.
+1. You must have access to a `kubernetes` cluster and `kubectl`.
 
-In the [postman](./doc/postman/) folder you can find the Postman collection to test the FHIR endpoints and get the token for the users. It'll be used from the [Securing the Mesh](#securing-the-mesh-mtls) part to the end.
+2. Postman is recomended. In the [postman](./doc/postman/) folder you can find the Postman collection to test the FHIR endpoints and get the token for the users. It'll be used from the [Securing the Mesh](#securing-the-mesh-mtls) part to the end.
 
 ## Raw deployment FHIR + DB
 
