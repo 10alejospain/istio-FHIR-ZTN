@@ -1,4 +1,4 @@
-# WORKSHOP INSTRUCUTIONS
+# TUTORIAL INTRO
 
 The main goal is to guide through a service mesh enforcing a zero trust network with authentication policies.
 
@@ -8,7 +8,7 @@ The tutorial was meant to be deployed on a Docker Desktop k8s enviroment. Feel f
 
 ## Table of contents
 
-- [WORKSHOP INSTRUCUTIONS](#workshop-instrucutions)
+- [TUTORIAL INTRO](#tutorial-intro)
     - [Before you start](#before-you-start)
     - [Raw deployment FHIR + DB](#raw-deployment-fhir--db)
         - [Test](#test)
@@ -121,7 +121,7 @@ kubectl delete svc fhir-server
 - Now in order to set up the service mesh you must follow the installation steps in [istio.io](https://istio.io/latest/docs/setup/getting-started/#download) and get Istio.
 
 
-- Once installed istioctl, apply the following command and enable the  injects the sidecar to the pods in the _default_ namespace.
+- Once installed _istioctl_, apply the following command and enable the  injects the sidecar to the pods in the _default_ namespace.
 
 ```shell
 istioctl install --set profile=demo -y 
@@ -136,14 +136,14 @@ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.19/samp
 
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.19/samples/addons/kiali.yaml
 ```
-- Next step is to set up the gateway throug the istio ingress to manage the conexions to the services in the mesh
+- Next step is to set up the gateway through the istio ingress to manage the conexions to the services in the mesh
 
 ```shell
 kubectl apply -f kubernetes/mesh-deployment/002_gateway.yaml
 ```
 
 
-- Then apply the following yaml's as in the previous stage
+- Then apply the following yaml files as in the previous stage
 ```shell
 kubectl apply -f kubernetes/raw-deployment/001_postgress-secret.yaml
 
@@ -167,7 +167,7 @@ kubectl apply -f kubernetes/mesh-deployment/004_fhir-server-vs.yaml
 
 ### Test mesh 
 
-In order to test the istio injection use:
+In order to test the Istio injection use:
 
 ```shell
 kubectl get namespace -L istio-injection
@@ -213,7 +213,7 @@ kubectl delete namespace istio-system
 
 ## Securing the Mesh (mTLS)
 
-For the next step we'll implement the secure comunication between services in the mesh using mTLS
+For the next step we'll force the secure comunication between services in the mesh using mTLS
 After seting up Istio the same way that it's explained in the previous step and activating the proxy injection:
 
 - Install Istio as in the previous steps
@@ -314,9 +314,11 @@ kubectl delete namespace istio-system
 
 ## Least privilege access 
 
-For this step we assume that there is an authentication provicer that allows JWT such as Keycloak.
+For this step we assume that there is an authentication provicer that allows JWT such as Keycloak. You should use your own provider. 
 
-For the example I'm going to use [keycloak.idea.lst.tfo.upm.es](https://keycloak.idea.lst.tfo.upm.es/) hosted by LST for the IDEA4RC project. 
+This example uses a open keycloak that will be active during the development of the research project [IDEA4RC](https://www.idea4rc.eu/).
+
+For the example I'm going to use [keycloak.idea.lst.tfo.upm.es](https://keycloak.idea.lst.tfo.upm.es/) hosted by [LST](https://www.lst.tfo.upm.es/) for the IDEA4RC project. 
 
 It contains a realm called IDEA4RC with 2 roles and 2 users as example
 
